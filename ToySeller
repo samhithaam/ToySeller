@@ -1,0 +1,162 @@
+import java.util.Objects;
+import java.util.Scanner;
+
+/**
+ * A program that determines the price of a custom-made toy.
+ *
+ * Purdue University -- CS18000 -- Fall 2021 -- Homework 04 -- Challenge
+ *
+ * @author Purdue CS
+ * @version September 20, 2021
+ */
+
+public class ToySeller {
+
+    private static String welcomeMessage = "Welcome to the Custom Toy Builder!\nOur store can custom-design " +
+            "3 different types of toys.";
+    private static String startMessage = "Which would you like to create? (Enter a number)\n" +
+            "1. Superman figurine\n" +
+            "2. Robotic cyclops\n" +
+            "3. Cat-shaped lamp\n" +
+            "4. EXIT";
+    private static String endProgram = "Thanks for using the Custom Toy Builder!";
+
+    private static String sizeQuestion = "What size toy would you like? (Enter S, M, or L)";
+    private static String supermanQ1 = "Do you want Superman to talk? (Enter Y or N)";
+    private static String supermanQ2 = "Do you want to add a cape? (Enter Y or N)";
+    private static String roboticCyclopsQ1 = "Do you want the Robotic Cyclops to move? (Enter Y or N)";
+    private static String roboticCyclopsQ2 = "What color eye do you want? (Enter 1, 2, or 3)\n" +
+            "1. Red\n" +
+            "2. Yellow\n" +
+            "3. Blue";
+    private static String catLampQ1 = "What color Cat-shaped Lamp do you want? (Enter 1, 2, 3, or 4)\n" +
+            "1. Gold\n" +
+            "2. Pink\n" +
+            "3. Blue\n" +
+            "4. No Color";
+    private static String catLampQ2 = "Do you want the Cat-shaped Lamp to glow? (Enter Y or N)";
+
+    private static String supermanCost = "Your Superman figurine costs";
+    private static String roboticCyclopsCost = "Your Robotic Cyclops costs";
+    private static String catLampCost = "Your Cat-shaped Lamp costs";
+
+
+    public static void main(String[] args) {
+        Scanner scan = new Scanner(System.in);
+        int totalPrice = 0;
+
+        System.out.println(welcomeMessage);
+        System.out.println(startMessage);
+        int toys = scan.nextInt();
+        scan.nextLine();
+        switch (toys) {
+            case 1:
+                System.out.println(sizeQuestion);
+                String supermanSize = scan.nextLine();
+                int supermanTotalPrice = 0;
+                if (Objects.equals(supermanSize, "S")) {
+                    supermanTotalPrice = supermanTotalPrice + 5;
+                } else if (Objects.equals(supermanSize, "M")) {
+                    supermanTotalPrice = supermanTotalPrice + 10;
+                } else if (Objects.equals(supermanSize, "L")) {
+                    supermanTotalPrice = supermanTotalPrice + 15;
+                }
+
+                System.out.println(supermanQ1);
+                String talk = scan.nextLine();
+                if (Objects.equals(talk, "Y")) {
+                    supermanTotalPrice = supermanTotalPrice + 8;
+                } else if (Objects.equals(talk, "N")) {
+                    supermanTotalPrice = supermanTotalPrice + 4;
+                }
+
+                System.out.println(supermanQ2);
+                String cape = scan.nextLine();
+                if (Objects.equals(cape, "Y")) {
+                    supermanTotalPrice = supermanTotalPrice + 5;
+                } else if (Objects.equals(cape, "N")) {
+                    supermanTotalPrice = supermanTotalPrice + 0;
+                }
+
+                System.out.printf("%s $%d!\n", supermanCost, supermanTotalPrice);
+                break;
+
+            case 2:
+                System.out.println(sizeQuestion);
+                String roboticSize = scan.nextLine();
+                int roboticTotalPrice = 0;
+                if (Objects.equals(roboticSize, "S")) {
+                    roboticTotalPrice = roboticTotalPrice + 5;
+                } else if (Objects.equals(roboticSize, "M")) {
+                    roboticTotalPrice = roboticTotalPrice + 10;
+                } else if (Objects.equals(roboticSize, "L")) {
+                    roboticTotalPrice = roboticTotalPrice + 15;
+                }
+
+                System.out.println(roboticCyclopsQ1);
+                String move = scan.nextLine();
+                if (Objects.equals(move, "Y")) {
+                    roboticTotalPrice = roboticTotalPrice + 5;
+                } else if (Objects.equals(move, "N")) {
+                    roboticTotalPrice = roboticTotalPrice + 3;
+                }
+
+                System.out.println(roboticCyclopsQ2);
+                int eye = scan.nextInt();
+                switch (eye) {
+                    case 1: roboticTotalPrice = roboticTotalPrice + 5;
+                            break;
+                    case 2: roboticTotalPrice = roboticTotalPrice + 6;
+                            break;
+                    case 3: roboticTotalPrice = roboticTotalPrice + 7;
+                            break;
+                }
+
+                System.out.printf("%s $%d!\n", roboticCyclopsCost, roboticTotalPrice);
+                break;
+
+            case 3:
+                System.out.println(sizeQuestion);
+                String catSize = scan.nextLine();
+                int catTotalPrice = 0;
+                if (Objects.equals(catSize, "S")) {
+                    catTotalPrice = catTotalPrice + 5;
+                } else if (Objects.equals(catSize, "M")) {
+                    catTotalPrice = catTotalPrice + 10;
+                } else if (Objects.equals(catSize, "L")) {
+                    catTotalPrice = catTotalPrice + 15;
+                }
+
+                System.out.println(catLampQ1);
+                int shape = scan.nextInt();
+                scan.nextLine();
+                switch (shape) {
+                    case 1: catTotalPrice = catTotalPrice + 10;
+                        break;
+                    case 2: catTotalPrice = catTotalPrice + 7;
+                        break;
+                    case 3: catTotalPrice = catTotalPrice + 7;
+                        break;
+                    case 4: catTotalPrice = catTotalPrice + 5;
+                    System.out.printf("%s $%d!\n", catLampCost, catTotalPrice);
+                        System.out.println(endProgram);
+                        return;
+                }
+
+                System.out.println(catLampQ2);
+                String glow = scan.nextLine();
+                if (Objects.equals(glow, "Y")) {
+                    catTotalPrice = catTotalPrice + 10;
+                } else if (Objects.equals(glow, "N")) {
+                    catTotalPrice = catTotalPrice + 0;
+                }
+                System.out.printf("%s $%d!\n", catLampCost, catTotalPrice);
+                break;
+
+            case 4:
+                System.out.println(endProgram);
+                return;
+        }
+        System.out.println(endProgram);
+    }
+}
